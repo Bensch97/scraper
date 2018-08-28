@@ -7,7 +7,7 @@ def scrape(website):
     r = requests.get(website)
     website_content = r.text
     urls = re.findall(r"https\S+?(?=\")", website_content)
-    emails = re.findall(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", website_content)
+    emails = re.findall(r"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+", website_content)
     phone_numbers = re.findall(r"\d\d\d-\d\d\d-\d\d\d\d", website_content)
     print "URLs"
     for url in urls:

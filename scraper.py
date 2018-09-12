@@ -9,6 +9,7 @@ def scrape(website):
     urls = re.findall(r"https\S+?(?=\")", website_content)
     emails = re.findall(r"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+", website_content)
     phone_numbers = re.findall(r"\d\d\d-\d\d\d-\d\d\d\d", website_content)
+    tags = re.findall(r'<(?:a|img).+?(?:href|src)="?(.+?)"? .+?>', website_content)
     print "URLs"
     for url in urls:
         print url
@@ -18,6 +19,10 @@ def scrape(website):
     print "Phone Numbers"
     for num in phone_numbers:
         print num
+    print "Tags"
+    for tag in tags:
+        if tag not in urls:
+            print tag
 
 def main():
     parser = argparse.ArgumentParser()
